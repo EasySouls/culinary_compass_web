@@ -1,4 +1,6 @@
 import "./globals.css";
+import Nav from "@/components/Nav";
+import Provider from "@/components/Provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -10,14 +12,17 @@ export const metadata: Metadata = {
     "Search for delicious recipes or share your favorites with others.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <main>
+          <Nav />
+          {children}
+        </main>
+      </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

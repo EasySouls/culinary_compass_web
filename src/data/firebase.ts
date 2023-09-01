@@ -1,30 +1,27 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore"
-import { getAuth } from "firebase/auth"
+import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
+  apiKey: process.env.FIREBASE_API_KEY,
 
-  apiKey: "AIzaSyA7OuafSyJLw-Sa19I1zxz_alPWCqHtnDM",
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
 
-  authDomain: "culinary-compass.firebaseapp.com",
+  projectId: process.env.FIREBASE_PROJECT_ID,
 
-  projectId: "culinary-compass",
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
 
-  storageBucket: "culinary-compass.appspot.com",
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
 
-  messagingSenderId: "1089294314059",
+  appId: process.env.FIREBASE_APP_ID,
 
-  appId: "1:1089294314059:web:ad9927087720bd5f32bbce",
-
-  measurementId: "G-01RQ9VQ5GJ"
-
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
-
 
 // Initialize Firebase
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app)
-export const auth = getAuth(app)
+export const db = getFirestore(app);
+export const auth = getAuth(app);
 export const analytics = getAnalytics(app);
