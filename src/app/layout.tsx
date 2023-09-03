@@ -17,11 +17,13 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <main>
-          <Nav />
-          {children}
-          <Analytics />
-        </main>
+        <Provider>
+          <main>
+            <Nav />
+            {children}
+            <Analytics />
+          </main>
+        </Provider>
       </body>
     </html>
   );
