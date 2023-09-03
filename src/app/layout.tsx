@@ -1,6 +1,6 @@
+import Footer from "@/components/Footer";
 import "./globals.css";
 import Nav from "@/components/Nav";
-import Provider from "@/components/Provider";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -17,13 +17,13 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <Provider>
-          <main>
-            <Nav />
-            {children}
-            <Analytics />
-          </main>
-        </Provider>
+        <main>
+          <Analytics />
+
+          <Nav />
+          {children}
+          <Footer />
+        </main>
       </body>
     </html>
   );

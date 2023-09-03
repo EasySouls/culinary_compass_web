@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,14 +7,17 @@
 *,
 *::after,
 *::before {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
-.black_btn {
+.black-btn {
   @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all duration-300 hover:bg-white hover:text-black text-center text-sm flex items-center justify-center;
 }
 
-.outlined_btn {
+.outlined-btn {
   @apply rounded-full border border-black bg-white py-1.5 px-5 text-black transition-all duration-300 hover:bg-black hover:text-white text-center text-sm flex items-center justify-center;
 }
 

@@ -12,6 +12,7 @@ import {
   getProviders,
   ClientSafeProvider,
 } from "next-auth/react";
+import CustomButton from "./CustomButton";
 
 const Nav = () => {
   const isUserLoggedIn = true;
@@ -39,13 +40,13 @@ const Nav = () => {
       <div className='sm:flex hidden'>
         {isUserLoggedIn ? (
           <div className='flex gap-3 md:gap-5'>
-            <Link href='/recipes/new' className='black_btn'>
+            <Link href='/recipes/new' className='black-btn'>
               Upload new recipe
             </Link>
 
             <button
               type='button'
-              className='outlined_btn'
+              className='outlined-btn'
               onClick={(e) => {
                 e.preventDefault();
                 signOut();
@@ -70,7 +71,7 @@ const Nav = () => {
                   type='button'
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
-                  className='black_btn'
+                  className='black-btn'
                 >
                   Sign In
                 </button>
@@ -106,16 +107,15 @@ const Nav = () => {
                 >
                   Upload new recipe
                 </Link>
-                <button
-                  type='button'
-                  onClick={() => {
+                <CustomButton
+                  title='Sign Out'
+                  styles='mt-4 w-full black-btn'
+                  handleClick={() => {
                     setToggleDropdown(false);
                     signOut();
                   }}
-                  className='mt-4 w-full black_btn'
-                >
-                  Sign Out
-                </button>
+                  btnType='button'
+                />
               </div>
             )}
           </div>
@@ -127,7 +127,7 @@ const Nav = () => {
                   type='button'
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
-                  className='black_btn'
+                  className='black-btn'
                 >
                   Sign In
                 </button>
