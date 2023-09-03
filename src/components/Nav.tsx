@@ -17,7 +17,7 @@ const Nav = () => {
   const isUserLoggedIn = true;
 
   const [providers, setProviders] = useState<ClientSafeProvider>();
-  const [toggleDropdown, setToggleDropdown] = useState(true);
+  const [toggleDropdown, setToggleDropdown] = useState(false);
 
   //   useEffect(() => {
   //     const _setProviders = async () => {
@@ -91,7 +91,7 @@ const Nav = () => {
             />
 
             {toggleDropdown && (
-              <div className='dropdown'>
+              <div className='absolute w-[12rem] top-10 right-5 p-3 flex flex-col text-right bg-slate-100'>
                 <Link
                   href='/profile'
                   className='dropdown_link'
@@ -106,6 +106,16 @@ const Nav = () => {
                 >
                   Upload new recipe
                 </Link>
+                <button
+                  type='button'
+                  onClick={() => {
+                    setToggleDropdown(false);
+                    signOut();
+                  }}
+                  className='mt-4 w-full black_btn'
+                >
+                  Sign Out
+                </button>
               </div>
             )}
           </div>
