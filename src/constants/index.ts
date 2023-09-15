@@ -16,3 +16,12 @@ export const about = {
     { title: "Partnership", url: "/" },
   ],
 };
+
+export const kitchenTypes = [
+  "Hungarian",
+  "Italian",
+  "Chinese",
+  "Japanese",
+  "Pizza",
+  "Hamburger",
+];

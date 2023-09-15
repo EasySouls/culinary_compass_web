@@ -2,19 +2,21 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import SearchKitchenType from "./SearchKitchenType";
 
-const SearchSection = () => {
+const Searchbar = () => {
+  const [kitchenType, setKitchenType] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
 
-  const onSearch = (event: React.FormEvent) => {
+  const handleSearch = (event: React.FormEvent) => {
     event.preventDefault();
 
     //Todo Implement search logic
   };
 
   return (
-    <form onSubmit={onSearch} className='w-full flex justify-center my-8'>
+    <form onSubmit={handleSearch} className='w-full flex justify-center my-8'>
       <input
         type='text'
         value={searchQuery}
@@ -22,8 +24,14 @@ const SearchSection = () => {
         className='w-2/3 bg-gray-100 rounded-full p-3'
         placeholder='Search for recipes'
       />
+      <div className=''>
+        <SearchKitchenType
+          kitchenType={kitchenType}
+          setKitchenType={setKitchenType}
+        />
+      </div>
     </form>
   );
 };
 
-export default SearchSection;
+export default Searchbar;
