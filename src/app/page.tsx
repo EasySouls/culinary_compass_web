@@ -2,13 +2,12 @@ import Hero from "@/components/Hero";
 import Searchbar from "@/components/Searchbar";
 import RecipeCard from "@/components/RecipeCard";
 import { fetchRecipes } from "@/utils";
-import Link from "next/link";
 
 const Home = async () => {
-  const recipes = await fetchRecipes("Pasta");
+  const recipes = await fetchRecipes("Chicken");
   console.log(recipes);
 
-  const isDataEmpty = recipes.meals === null || recipes.length < 1 || !recipes;
+  const isDataEmpty = recipes === null || recipes.length < 1 || !recipes;
 
   return (
     <>
@@ -22,9 +21,9 @@ const Home = async () => {
 
         {!isDataEmpty ? (
           <section>
-            <div className='flex '>
-              {recipes.map((recipe) => (
-                <RecipeCard recipe={recipe} />
+            <div className='flex flex-wrap'>
+              {recipes.map((recipe, index) => (
+                <RecipeCard key={index} recipe={recipe} />
               ))}
             </div>
           </section>
