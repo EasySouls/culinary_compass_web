@@ -21,7 +21,7 @@ const Searchbar = () => {
         type='text'
         value={searchQuery}
         onChange={(event) => setSearchQuery(event.target.value)}
-        className='w-2/3 bg-gray-100 rounded-full p-3'
+        className='w-2/3 bg-gray-100 rounded-s-full p-3 border border-blue-700 mr-1'
         placeholder='Search for recipes'
       />
       <div className=''>

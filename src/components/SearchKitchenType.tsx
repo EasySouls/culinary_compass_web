@@ -24,7 +24,7 @@ const SearchKitchenType = ({
         });
 
   return (
-    <div className='top-16 w-40 h-full border border-blue-700 rounded-full'>
+    <div className='top-16 w-40 h-full border border-blue-700 rounded-r-full'>
       <Listbox value={kitchenType} onChange={setKitchenType}>
         <div className='relative w-full'>
           <Listbox.Button className='absolute top-4'>
