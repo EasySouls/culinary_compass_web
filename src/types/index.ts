@@ -7,6 +7,10 @@ export interface CustomButtonProps {
   btnType?: "button" | "submit";
 }
 
+export interface RecipeProps {
+  recipe: Meal;
+}
+
 export interface Recipe {
   idMeal: Key;
 }
