@@ -19,12 +19,14 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           alt={strMeal}
           // placeholder='blur'
           fill
+          priority
           sizes='(min-width: 200px) 50vw, 100vw'
           className='object-cover rounded-t-xl'
         />
       </div>
-      <div className='p-2 flex flex-col items-center justify-around w-full h-'>
-        <h3 className='uppercase text-md'>{strMeal}</h3>
+      <div className='p-2 flex flex-col items-center justify-center w-full h-2/5'>
+        <h3 className='uppercase text-md text-center'>{strMeal}</h3>
+        <hr className='w-3/4 m-2 text-black border-black' />
         <span>{strArea}</span>
       </div>
     </div>

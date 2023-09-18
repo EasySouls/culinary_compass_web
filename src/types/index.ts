@@ -1,15 +1,10 @@
-import { Key, MouseEventHandler } from "react";
+import { Dispatch, Key, MouseEventHandler, SetStateAction } from "react";
 
 export interface CustomButtonProps {
   title: String;
   styles?: String;
   handleClick?: MouseEventHandler<HTMLButtonElement>;
   btnType?: "button" | "submit";
-}
-
-export interface SearchKitchenTypeProps {
-  kitchenType: String;
-  setKitchenType: (kitchenType: String) => void;
 }
 
 export interface Recipe {
