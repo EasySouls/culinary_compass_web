@@ -1,7 +1,7 @@
 import Hero from "@/components/Hero";
 import Searchbar from "@/components/Searchbar";
 import RecipeCard from "@/components/RecipeCard";
-import { fetchRecipes } from "@/utils";
+import { fetchRecipes, fetchRecipeById, convertToRecipe } from "@/utils";
 import { FilterProps } from "@/types";
 import CustomFilter from "@/components/CustomFilter";
 import { categories } from "@/constants";
@@ -11,7 +11,10 @@ const Home = async ({ searchParams }: { searchParams: FilterProps }) => {
     search: searchParams.search || "",
     kitchenType: searchParams.kitchenType || "",
   });
-  console.log(recipes);
+
+  const meal = await fetchRecipeById(52980);
+  const recipe = convertToRecipe(meal);
+  console.log(recipe);
 
   const isDataEmpty = recipes === null || recipes.length < 1 || !recipes;
 

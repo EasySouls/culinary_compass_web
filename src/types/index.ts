@@ -31,17 +31,18 @@ export interface Recipe {
   name: string;
   category: string;
   kitchenType: string;
+  meatType: string;
   instructions: Array<string>;
   mealThumbnail: string;
-  tags: Array<string>;
+  tags?: Array<string>;
   ingredients: Array<string>;
   measures: Array<string>;
-  source?: string;
   youtubeLink?: string;
-  dateModified?: Date;
+  dateModified?: string;
 }
 
 export interface Meal {
+  [key: string]: string;
   idMeal: string;
   strMeal: string;
   strDrinkAlternate: any;
