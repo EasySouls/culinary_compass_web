@@ -1,4 +1,4 @@
-import { Dispatch, Key, MouseEventHandler, SetStateAction } from "react";
+import { MouseEventHandler } from "react";
 
 export interface CustomButtonProps {
   title: String;
@@ -11,8 +11,34 @@ export interface RecipeProps {
   recipe: Meal;
 }
 
+export interface FilterProps {
+  search: string;
+  kitchenType: string;
+}
+
+export interface OptionProps {
+  title: string;
+  value: string;
+}
+
+export interface CustomFilterProps {
+  title: string;
+  options: OptionProps[];
+}
+
 export interface Recipe {
-  idMeal: Key;
+  id: number;
+  name: string;
+  category: string;
+  kitchenType: string;
+  instructions: Array<string>;
+  mealThumbnail: string;
+  tags: Array<string>;
+  ingredients: Array<string>;
+  measures: Array<string>;
+  source?: string;
+  youtubeLink?: string;
+  dateModified?: Date;
 }
 
 export interface Meal {

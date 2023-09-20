@@ -2,9 +2,15 @@ import Hero from "@/components/Hero";
 import Searchbar from "@/components/Searchbar";
 import RecipeCard from "@/components/RecipeCard";
 import { fetchRecipes } from "@/utils";
+import { FilterProps } from "@/types";
+import CustomFilter from "@/components/CustomFilter";
+import { categories } from "@/constants";
 
-const Home = async () => {
-  const recipes = await fetchRecipes("Chicken");
+const Home = async ({ searchParams }: { searchParams: FilterProps }) => {
+  const recipes = await fetchRecipes({
+    search: searchParams.search || "",
+    kitchenType: searchParams.kitchenType || "",
+  });
   console.log(recipes);
 
   const isDataEmpty = recipes === null || recipes.length < 1 || !recipes;
@@ -12,7 +18,19 @@ const Home = async () => {
   return (
     <>
       <Hero />
-      <Searchbar />
+
+      <div className='flex flex-col items-center'>
+        <Searchbar />
+        <div className='flex gap-4'>
+          <div>
+            <CustomFilter title='categories' options={categories} />
+          </div>
+          <div>
+            <CustomFilter title='categories' options={categories} />
+          </div>
+        </div>
+      </div>
+
       <div className='mt-12 p-8 w-full' id='discover'>
         <div className=''>
           <h1 className='text-[35px]'>Recipes</h1>

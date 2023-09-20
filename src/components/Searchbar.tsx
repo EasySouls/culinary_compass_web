@@ -9,10 +9,38 @@ const Searchbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
 
-  const handleSearch = (event: React.FormEvent) => {
+  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    //Todo Implement search logic
+    if (searchQuery === "") {
+      return alert("Please fill in the search bar");
+    }
+
+    updateSearchParams(searchQuery.toLowerCase(), kitchenType.toLowerCase());
+  };
+
+  const updateSearchParams = (searchParam: string, kitchenType: string) => {
+    const searchParams = new URLSearchParams(window.location.search);
+
+    if (searchParam) {
+      searchParams.set("search", searchParam);
+    } else {
+      searchParams.delete("search");
+    }
+
+    if (kitchenType) {
+      searchParams.set("kitchenType", kitchenType);
+    } else {
+      searchParams.delete("kitchenType");
+    }
+
+    const newPathname = `${
+      window.location.pathname
+    }?${searchParams.toString()}`;
+
+    router.push(newPathname, {
+      scroll: false,
+    });
   };
 
   return (

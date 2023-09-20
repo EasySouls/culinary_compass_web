@@ -25,3 +25,11 @@ export const kitchenTypes = [
   "Pizza",
   "Hamburger",
 ];
+
+export const categories = [
+  { title: "Appetizer", value: "appetizer" },
+  { title: "Soup", value: "soup" },
+  { title: "Main dish", value: "main_dish" },
+  { title: "Salad", value: "salad" },
+  { title: "Drinks", value: "drinks" },
+];

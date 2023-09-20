@@ -1,11 +1,12 @@
-import { Meal, Recipe } from "@/types";
+import { FilterProps, Meal } from "@/types";
 import axios, { AxiosResponse } from "axios";
 
-export async function fetchRecipes(query: string): Promise<Meal[]> {
+// TODO use the received kitchenType filter prop
+export async function fetchRecipes(filters: FilterProps): Promise<Meal[]> {
   const options = {
     url: "https://www.themealdb.com/api/json/v1/1/search.php",
     params: {
-      s: query,
+      s: filters.search,
     },
   };
 
@@ -22,3 +23,13 @@ export async function fetchRecipes(query: string): Promise<Meal[]> {
     throw error;
   }
 }
+
+export const updateSearchParams = (type: string, value: string) => {
+  const searchParams = new URLSearchParams(window.location.search);
+
+  searchParams.set(type, value);
+
+  const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
+
+  return newPathname;
+};

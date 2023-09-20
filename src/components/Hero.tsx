@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <div className='flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] mx-auto'>
       <div className='flex-1 pt-12 px-8'>
-        <h1 className='2xl:text-[72px] sm:text-[64px] text-[50px] font-extrabold'>
+        <h1 className='2xl:text-[72px] text-center sm:text-[64px] text-[50px] font-extrabold'>
           Lose yourself in the world of spectacular dishes!
         </h1>
         <h3 className='text-[27px] text-black font-light mt-5'>
