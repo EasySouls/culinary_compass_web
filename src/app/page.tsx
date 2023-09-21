@@ -4,7 +4,8 @@ import RecipeCard from "@/components/RecipeCard";
 import { fetchRecipes, fetchRecipeById, convertToRecipe } from "@/utils";
 import { FilterProps } from "@/types";
 import CustomFilter from "@/components/CustomFilter";
-import { categories } from "@/constants";
+import { DATABASE_NAME, categories } from "@/constants";
+import client from "@/data/mongodb";
 
 const Home = async ({ searchParams }: { searchParams: FilterProps }) => {
   const recipes = await fetchRecipes({
@@ -12,9 +13,7 @@ const Home = async ({ searchParams }: { searchParams: FilterProps }) => {
     kitchenType: searchParams.kitchenType || "",
   });
 
-  const meal = await fetchRecipeById(52980);
-  const recipe = convertToRecipe(meal);
-  console.log(recipe);
+  client.connect();
 
   const isDataEmpty = recipes === null || recipes.length < 1 || !recipes;
 

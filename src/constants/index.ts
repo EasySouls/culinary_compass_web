@@ -33,3 +33,5 @@ export const categories = [
   { title: "Salad", value: "salad" },
   { title: "Drinks", value: "drinks" },
 ];
+
+export const DATABASE_NAME = "compassDB";
