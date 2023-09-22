@@ -20,10 +20,14 @@ async function fillDatabase() {
 
   for (let index = 52764; index <= 53075; index++) {
     const meal = await fetchRecipeById(index);
-    const recipe = convertToRecipe(meal);
 
+    if (meal === undefined || meal === null) continue;
+
+    const recipe = convertToRecipe(meal);
     await recipesCollection.insertOne(recipe);
   }
+
+  console.log("Finished filling the database");
 }
 
 async function run() {
@@ -35,7 +39,6 @@ async function run() {
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
-    await fillDatabase();
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();

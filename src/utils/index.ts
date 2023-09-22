@@ -24,7 +24,7 @@ export async function fetchRecipes(filters: FilterProps): Promise<Meal[]> {
 }
 
 // from 52764 to 53075
-export async function fetchRecipeById(id: number): Promise<Meal> {
+export async function fetchRecipeById(id: number): Promise<Meal | undefined> {
   const options = {
     url: "https://www.themealdb.com/api/json/v1/1/lookup.php",
     params: {
@@ -37,8 +37,10 @@ export async function fetchRecipeById(id: number): Promise<Meal> {
       options.url,
       { params: options.params }
     );
+
+    if (response.data.meals === null || response.data.meals === undefined)
+      return;
     const result = response.data.meals[0];
-    console.log(result);
     return result;
   } catch (error) {
     console.error(error);
