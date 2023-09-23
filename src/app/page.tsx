@@ -1,21 +1,21 @@
 import Hero from "@/components/Hero";
 import Searchbar from "@/components/Searchbar";
 import RecipeCard from "@/components/RecipeCard";
-import { fetchRecipes, fetchRecipeById, convertToRecipe } from "@/utils";
+import { fetchRecipes } from "@/utils";
 import { FilterProps } from "@/types";
 import CustomFilter from "@/components/CustomFilter";
-import { DATABASE_NAME, categories } from "@/constants";
-import client from "@/data/mongodb";
+import { DATABASE_NAME, categories, kitchenTypes } from "@/constants";
+import client, { getRecipeById, getRecipes } from "@/data/mongodb";
 
 const Home = async ({ searchParams }: { searchParams: FilterProps }) => {
-  const recipes = await fetchRecipes({
-    search: searchParams.search || "",
-    kitchenType: searchParams.kitchenType || "",
-  });
+  const recipes = await getRecipes(
+    searchParams.search,
+    searchParams.kitchenType,
+    "Chicken"
+  );
+  console.log("The retrieved recipes are:", recipes);
 
-  client.connect();
-
-  const isDataEmpty = recipes === null || recipes.length < 1 || !recipes;
+  const isDataEmpty = recipes === null || !recipes;
 
   return (
     <>

@@ -8,7 +8,7 @@ export interface CustomButtonProps {
 }
 
 export interface RecipeProps {
-  recipe: Meal;
+  recipe: Recipe;
 }
 
 export interface FilterProps {

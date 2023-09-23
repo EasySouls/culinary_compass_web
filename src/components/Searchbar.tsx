@@ -19,7 +19,7 @@ const Searchbar = () => {
       return alert("Please fill in the search bar");
     }
 
-    updateSearchParams(searchQuery.toLowerCase(), kitchenType.toLowerCase());
+    updateSearchParams(searchQuery.toLowerCase(), kitchenType);
   };
 
   const updateSearchParams = (searchParam: string, kitchenType: string) => {

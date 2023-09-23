@@ -1,6 +1,6 @@
 "use client";
 
-import { Meal } from "@/types";
+import { Meal, Recipe } from "@/types";
 import Image from "next/image";
 import closeIcon from "public/close.svg";
 import { Fragment } from "react";
@@ -9,7 +9,7 @@ import { Dialog, Transition } from "@headlessui/react";
 interface RecipeDetailsProps {
   isOpen: boolean;
   closeModal: () => void;
-  recipe: Meal;
+  recipe: Recipe;
 }
 
 const RecipeDetails = ({ isOpen, closeModal, recipe }: RecipeDetailsProps) => {
@@ -58,8 +58,8 @@ const RecipeDetails = ({ isOpen, closeModal, recipe }: RecipeDetailsProps) => {
                   <div className='flex-1 flex flex-col gap-3'>
                     <div className='relative w-full h-[20rem] bg-amber-300 bg-cover bg-center rounded-xl'>
                       <Image
-                        src={recipe.strMealThumb}
-                        alt={recipe.strMeal}
+                        src={recipe.mealThumbnail}
+                        alt={recipe.name}
                         // placeholder='blur'
                         fill
                         priority
@@ -70,7 +70,7 @@ const RecipeDetails = ({ isOpen, closeModal, recipe }: RecipeDetailsProps) => {
 
                   <div className='flex-1 flex flex-col gap-2 '>
                     <h2 className='font-semibold text-xl uppercase'>
-                      {recipe.strMeal}
+                      {recipe.name}
                     </h2>
                     <div className='mt-3 flex flex-wrap gap-4'>
                       {Object.entries(recipe).map(([key, value]) =>

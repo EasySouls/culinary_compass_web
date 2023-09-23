@@ -8,7 +8,7 @@ import { RecipeProps } from "@/types";
 import RecipeDetails from "./RecipeDetails";
 
 const RecipeCard = ({ recipe }: RecipeProps) => {
-  const { strMeal, strArea, strMealThumb } = recipe;
+  const { name, kitchenType, mealThumbnail } = recipe;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -16,8 +16,8 @@ const RecipeCard = ({ recipe }: RecipeProps) => {
     <div className='m-4 flex flex-col w-[250px] h-[350px] border border-black rounded-xl shadow-sm'>
       <div className='w-full h-3/5 relative'>
         <Image
-          src={strMealThumb}
-          alt={strMeal}
+          src={mealThumbnail}
+          alt={name}
           // placeholder='blur'
           fill
           priority
@@ -26,9 +26,9 @@ const RecipeCard = ({ recipe }: RecipeProps) => {
         />
       </div>
       <div className='p-2 flex flex-col items-center justify-center w-full'>
-        <h3 className='uppercase text-md text-center'>{strMeal}</h3>
+        <h3 className='uppercase text-md text-center'>{name}</h3>
         <hr className='w-3/4 m-2 text-black border-black' />
-        <span>{strArea}</span>
+        <span>{kitchenType}</span>
       </div>
       <div className='w-full flex justify-center'>
         <CustomButton
