@@ -1,4 +1,4 @@
-import { DATABASE_NAME } from "@/constants";
+import { DATABASE_NAME, categories, kitchenTypes, tags } from "@/constants";
 import { Recipe } from "@/types";
 import { fetchRecipeById, convertToRecipe } from "@/utils";
 import { MongoClient, ServerApiVersion } from "mongodb";
@@ -31,42 +31,52 @@ async function fillDatabase() {
   console.log("Finished filling the database");
 }
 
-export async function getRecipeById(id: number) {
+export async function getRecipeById(id: number): Promise<Recipe | null> {
   try {
     await client.connect();
 
-    const collection = client.db(DATABASE_NAME).collection("recipes");
+    const collection = client.db(DATABASE_NAME).collection<Recipe>("recipes");
     const recipe = await collection.findOne({
       id: id,
     });
-    console.log(recipe);
+    return recipe;
   } catch (error) {
-    console.log(error);
+    console.log(`Can't find recipe with id ${id}. Error: ${error}`);
+    return null;
   } finally {
     await client.close();
   }
 }
 
 export async function getRecipes(
-  query: string,
-  kitchenType: string,
-  meatType: string
+  limit: number,
+  query?: string,
+  kitchenType?: string,
+  meatType?: string
 ) {
   try {
     await client.connect();
 
     const database = client.db(DATABASE_NAME);
+    const collection = database.collection<Recipe>("recipes");
 
-    const collection = client.db(DATABASE_NAME).collection<Recipe>("recipes");
+    const filter: any = {};
+    if (query !== undefined) {
+      filter.$text = { $search: query };
+    }
+    if (kitchenType !== undefined) {
+      filter.kitchenType = kitchenType;
+    }
+    if (meatType !== undefined) {
+      filter.meatType = meatType;
+    }
 
-    console.log("Text index created successfully.");
-    const filter = {
-      $text: { $search: query },
-      kitchenType: kitchenType,
-      meatType: meatType,
-    };
+    console.log(filter);
 
-    const recipes: Recipe[] = await collection.find(filter).toArray();
+    const recipes: Recipe[] = await collection
+      .find(filter)
+      .limit(Number(limit))
+      .toArray();
     return recipes;
   } catch (error) {
     console.error("Error fetching recipes: ", error);

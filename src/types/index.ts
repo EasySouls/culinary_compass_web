@@ -14,6 +14,8 @@ export interface RecipeProps {
 export interface FilterProps {
   search: string;
   kitchenType: string;
+  categories: string;
+  limit: number;
 }
 
 export interface OptionProps {
@@ -24,6 +26,11 @@ export interface OptionProps {
 export interface CustomFilterProps {
   title: string;
   options: OptionProps[];
+}
+
+export interface ShowMoreProps {
+  pageNumber: number;
+  isNext: boolean;
 }
 
 export interface Recipe {
@@ -39,6 +46,11 @@ export interface Recipe {
   measures: Array<string>;
   youtubeLink?: string;
   dateModified?: string;
+  timeNeeded: {
+    preparation: number;
+    cooking: number;
+  };
+  difficulty: "easy";
 }
 
 export interface Meal {

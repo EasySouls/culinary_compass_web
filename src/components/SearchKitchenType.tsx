@@ -1,9 +1,7 @@
 "use client";
 
 import { Listbox, Transition } from "@headlessui/react";
-import icon from "public/vercel.svg";
 import { kitchenTypes } from "@/constants";
-import Image from "next/image";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { useState, Fragment } from "react";
 
@@ -40,13 +38,6 @@ const SearchKitchenType = ({
                 aria-hidden='false'
               />
             </span>
-            {/* <Image
-              src={icon}
-              width={50}
-              height={50}
-              className='h-full'
-              alt='Kitchen type icon'
-            /> */}
           </Listbox.Button>
         </div>
         <Transition

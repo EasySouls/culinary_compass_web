@@ -103,6 +103,11 @@ export const convertToRecipe = (meal: Meal) => {
     measures: measures,
     youtubeLink: meal.strYoutube,
     dateModified: meal.dateModified,
+    timeNeeded: {
+      preparation: 0,
+      cooking: 0,
+    },
+    difficulty: "easy",
   };
 
   return recipe;

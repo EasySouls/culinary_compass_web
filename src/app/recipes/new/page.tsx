@@ -1,5 +1,5 @@
-const page = () => {
-  return <div>page</div>;
+const NewRecipePage = async () => {
+  return <div className=''></div>;
 };
 
-export default page;
+export default NewRecipePage;
