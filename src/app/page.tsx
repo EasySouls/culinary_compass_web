@@ -4,16 +4,17 @@ import RecipeCard from "@/components/RecipeCard";
 import { fetchRecipes } from "@/utils";
 import { FilterProps } from "@/types";
 import CustomFilter from "@/components/CustomFilter";
-import { DATABASE_NAME, categories, kitchenTypes } from "@/constants";
-import client, { getRecipeById, getRecipes } from "@/data/mongodb";
+import { DATABASE_NAME, categories, kitchenTypes, tags } from "@/constants";
+import { getRecipes } from "@/data/mongodb";
+import ShowMore from "@/components/ShowMore";
 
 const Home = async ({ searchParams }: { searchParams: FilterProps }) => {
   const recipes = await getRecipes(
+    searchParams.limit || 10,
     searchParams.search,
     searchParams.kitchenType,
-    "Chicken"
+    searchParams.categories
   );
-  console.log("The retrieved recipes are:", recipes);
 
   const isDataEmpty = recipes === null || !recipes;
 
@@ -27,9 +28,7 @@ const Home = async ({ searchParams }: { searchParams: FilterProps }) => {
           <div>
             <CustomFilter title='categories' options={categories} />
           </div>
-          <div>
-            <CustomFilter title='categories' options={categories} />
-          </div>
+          <div></div>
         </div>
       </div>
 
@@ -46,6 +45,11 @@ const Home = async ({ searchParams }: { searchParams: FilterProps }) => {
                 <RecipeCard key={index} recipe={recipe} />
               ))}
             </div>
+
+            <ShowMore
+              pageNumber={(searchParams.limit || 10) / 10}
+              isNext={(searchParams.limit || 10) > recipes.length}
+            />
           </section>
         ) : (
           <div className=''>

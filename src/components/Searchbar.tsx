@@ -3,9 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import SearchKitchenType from "./SearchKitchenType";
-import client from "@/data/mongodb";
-import { DATABASE_NAME } from "@/constants";
-import { fetchRecipeById, convertToRecipe } from "@/utils";
 
 const Searchbar = () => {
   const [kitchenType, setKitchenType] = useState("");
@@ -14,10 +11,6 @@ const Searchbar = () => {
 
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    if (searchQuery === "") {
-      return alert("Please fill in the search bar");
-    }
 
     updateSearchParams(searchQuery.toLowerCase(), kitchenType);
   };
