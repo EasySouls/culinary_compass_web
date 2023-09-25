@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import AuthProvider from "./context/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,13 +18,12 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <main>
-          <Analytics />
-
+        <Analytics />
+        <AuthProvider>
           <Nav />
-          {children}
+          <main>{children}</main>
           <Footer />
-        </main>
+        </AuthProvider>
       </body>
     </html>
   );

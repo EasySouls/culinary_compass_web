@@ -82,6 +82,7 @@ declare global {
   namespace NodeJS {
     export interface ProcessEnv {
       NEXTAUTH_SECRET: string;
+      VERCEL_URL: string;
 
       AUTH_GITHUB_ID: string;
       AUTH_GITHUB_SECRET: string;

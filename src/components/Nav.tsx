@@ -4,14 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "public/vercel.svg";
 import profileIcon from "public/profile_icon.svg";
-import { useState, useEffect } from "react";
-import {
-  signIn,
-  signOut,
-  useSession,
-  getProviders,
-  ClientSafeProvider,
-} from "next-auth/react";
+import { useState } from "react";
+import { signIn, signOut, ClientSafeProvider } from "next-auth/react";
 import CustomButton from "./CustomButton";
 
 const Nav = () => {
@@ -19,15 +13,6 @@ const Nav = () => {
 
   const [providers, setProviders] = useState<ClientSafeProvider>();
   const [toggleDropdown, setToggleDropdown] = useState(false);
-
-  //   useEffect(() => {
-  //     const _setProviders = async () => {
-  //       const response = await getProviders();
-  //       setProviders(response);
-  //     };
-
-  //     _setProviders();
-  //   }, []);
 
   return (
     <nav className='flex justify-between items-center w-full mb-16 pt-3'>
@@ -55,7 +40,7 @@ const Nav = () => {
               Sign Out
             </button>
 
-            <Link href='/profile'>
+            <Link href='/dashboard'>
               <Image
                 src={profileIcon}
                 alt='Profile'
@@ -94,7 +79,7 @@ const Nav = () => {
             {toggleDropdown && (
               <div className='absolute w-[12rem] top-10 right-5 p-3 flex flex-col text-right bg-slate-100'>
                 <Link
-                  href='/profile'
+                  href='/dashboard'
                   className='dropdown_link'
                   onClick={() => setToggleDropdown(false)}
                 >

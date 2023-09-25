@@ -1,6 +1,5 @@
 "use client";
 
-import { Meal } from "@/types";
 import Image from "next/image";
 import CustomButton from "./CustomButton";
 import { useState } from "react";
