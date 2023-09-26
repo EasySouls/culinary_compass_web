@@ -40,9 +40,9 @@ const Home = async ({ searchParams }: { searchParams: FilterProps }) => {
         {!isDataEmpty ? (
           <section>
             <div className='flex flex-wrap'>
-              {recipes.map((recipe, index) => (
-                <RecipeCard key={index} recipe={recipe} />
-              ))}
+              {recipes.map((recipe, index) => {
+                return <RecipeCard key={index} recipe={recipe} />;
+              })}
             </div>
 
             <ShowMore
