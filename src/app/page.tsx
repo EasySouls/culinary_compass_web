@@ -1,10 +1,9 @@
 import Hero from "@/components/Hero";
 import Searchbar from "@/components/Searchbar";
 import RecipeCard from "@/components/RecipeCard";
-import { fetchRecipes } from "@/utils";
 import { FilterProps } from "@/types";
 import CustomFilter from "@/components/CustomFilter";
-import { DATABASE_NAME, categories, kitchenTypes, tags } from "@/constants";
+import { categories } from "@/constants";
 import { getRecipes } from "@/data/mongodb";
 import ShowMore from "@/components/ShowMore";
 
