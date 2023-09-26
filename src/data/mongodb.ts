@@ -1,7 +1,8 @@
-import { DATABASE_NAME, categories, kitchenTypes, tags } from "@/constants";
+import { DATABASE_NAME } from "@/constants";
 import { Recipe } from "@/types";
 import { fetchRecipeById, convertToRecipe } from "@/utils";
 import { MongoClient, ServerApiVersion } from "mongodb";
+import { cache } from "react";
 
 const uri = process.env.MONGODB_CONNECTION_STRING;
 
@@ -48,42 +49,45 @@ export async function getRecipeById(id: number): Promise<Recipe | null> {
   }
 }
 
-export async function getRecipes(
-  limit: number,
-  query?: string,
-  kitchenType?: string,
-  meatType?: string
-) {
-  try {
-    await client.connect();
+export const revalidate = 10;
+export const getRecipes = cache(
+  async (
+    limit: number,
+    query?: string,
+    kitchenType?: string,
+    meatType?: string
+  ) => {
+    try {
+      await client.connect();
 
-    const database = client.db(DATABASE_NAME);
-    const collection = database.collection<Recipe>("recipes");
+      const database = client.db(DATABASE_NAME);
+      const collection = database.collection<Recipe>("recipes");
 
-    const filter: any = {};
-    if (query !== undefined) {
-      filter.$text = { $search: query };
+      const filter: any = {};
+      if (query !== undefined) {
+        filter.$text = { $search: query };
+      }
+      if (kitchenType !== undefined) {
+        filter.kitchenType = kitchenType;
+      }
+      if (meatType !== undefined) {
+        filter.meatType = meatType;
+      }
+
+      console.log(filter);
+
+      const recipes: Recipe[] = await collection
+        .find(filter)
+        .limit(Number(limit))
+        .toArray();
+      return recipes;
+    } catch (error) {
+      console.error("Error fetching recipes: ", error);
+    } finally {
+      await client.close();
     }
-    if (kitchenType !== undefined) {
-      filter.kitchenType = kitchenType;
-    }
-    if (meatType !== undefined) {
-      filter.meatType = meatType;
-    }
-
-    console.log(filter);
-
-    const recipes: Recipe[] = await collection
-      .find(filter)
-      .limit(Number(limit))
-      .toArray();
-    return recipes;
-  } catch (error) {
-    console.error("Error fetching recipes: ", error);
-  } finally {
-    await client.close();
   }
-}
+);
 
 async function run() {
   try {
