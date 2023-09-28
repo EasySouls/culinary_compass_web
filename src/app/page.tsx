@@ -31,7 +31,7 @@ const Home = async ({ searchParams }: { searchParams: FilterProps }) => {
         </div>
       </div>
 
-      <div className='mt-12 p-8 w-full' id='discover'>
+      <div className='mt-12 p-8 w-full bg-lime-200' id='discover'>
         <div className=''>
           <h1 className='text-[35px]'>Recipes</h1>
           <p className='text-xl font-light'>Discover the best dishes</p>
