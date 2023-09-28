@@ -63,7 +63,7 @@ export const categories = [
   { title: "Breakfast", value: "breakfast" },
   { title: "Goat", value: "goat" },
   { title: "Beef", value: "beef" },
-];
+] as const;
 
 export const tags = [
   "chicken",

@@ -7,6 +7,8 @@ import { categories } from "@/constants";
 import { getRecipes } from "@/data/mongodb";
 import ShowMore from "@/components/ShowMore";
 
+export const revalidate = 3600;
+
 const Home = async ({ searchParams }: { searchParams: FilterProps }) => {
   const recipes = await getRecipes(
     searchParams.limit || 10,
@@ -41,6 +43,7 @@ const Home = async ({ searchParams }: { searchParams: FilterProps }) => {
           <section>
             <div className='flex flex-wrap'>
               {recipes.map((recipe, index) => {
+                recipe._id = recipe._id.toString();
                 return <RecipeCard key={index} recipe={recipe} />;
               })}
             </div>

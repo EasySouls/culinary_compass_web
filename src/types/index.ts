@@ -1,3 +1,4 @@
+import { categories } from "@/constants";
 import { ObjectId } from "mongodb";
 import { MouseEventHandler } from "react";
 
@@ -24,9 +25,11 @@ export interface OptionProps {
   value: string;
 }
 
+export type CategoryValue = (typeof categories)[number]["value"];
+
 export interface CustomFilterProps {
   title: string;
-  options: OptionProps[];
+  options: readonly OptionProps[];
 }
 
 export interface ShowMoreProps {
@@ -35,6 +38,7 @@ export interface ShowMoreProps {
 }
 
 export interface Recipe {
+  _id: string;
   id: number;
   name: string;
   category: string;

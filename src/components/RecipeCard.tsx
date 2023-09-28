@@ -13,7 +13,7 @@ const RecipeCard = ({ recipe }: RecipeProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='m-4 flex flex-col w-[250px] h-[350px] border border-black rounded-xl shadow-sm'>
+    <div className='m-4 flex flex-col w-[250px] h-[350px] border border-black rounded-xl shadow-sm bg-white'>
       <div className='w-full h-3/5 relative'>
         <Link href={`/recipes/${recipe.id}`}>
           <Image
@@ -27,14 +27,14 @@ const RecipeCard = ({ recipe }: RecipeProps) => {
           />
         </Link>
       </div>
-      <div className='px-2 flex flex-col items-center justify-center w-full h-2/6'>
+      <div className='px-2 flex flex-col items-center justify-center w-full h-2/6 bg-white'>
         <Link href={`/recipes/${recipe.id}`}>
           <h3 className='uppercase text-md text-center'>{name}</h3>
         </Link>
         <hr className='w-3/4 m-2 text-black border-black' />
         <span>{kitchenType}</span>
       </div>
-      <div className='w-full mb-2 flex justify-center'>
+      <div className='w-full mb-2 flex justify-center bg-white'>
         <CustomButton
           title='See more'
           handleClick={() => setIsOpen((isOpen) => !isOpen)}
