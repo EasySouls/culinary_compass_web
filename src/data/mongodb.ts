@@ -1,6 +1,6 @@
-import { DATABASE_NAME } from "@/constants";
-import { Recipe } from "@/types";
-import { fetchRecipeById, convertToRecipe } from "@/utils";
+import { DATABASE_NAME, categories } from "@/constants";
+import { CategoryValue, Recipe } from "@/types";
+import { fetchRecipeById } from "@/utils";
 import { MongoClient, ServerApiVersion } from "mongodb";
 import { cache } from "react";
 
@@ -15,22 +15,22 @@ const client = new MongoClient(uri as string, {
   },
 });
 
-async function fillDatabase() {
-  await client.connect();
-  const db = client.db(DATABASE_NAME);
-  const recipesCollection = db.collection("recipes");
+// async function fillDatabase() {
+//   await client.connect();
+//   const db = client.db(DATABASE_NAME);
+//   const recipesCollection = db.collection("recipes");
 
-  for (let index = 52764; index <= 53075; index++) {
-    const meal = await fetchRecipeById(index);
+//   for (let index = 52764; index <= 53075; index++) {
+//     const meal = await fetchRecipeById(index);
 
-    if (meal === undefined || meal === null) continue;
+//     if (meal === undefined || meal === null) continue;
 
-    const recipe = convertToRecipe(meal);
-    await recipesCollection.insertOne(recipe);
-  }
+//     const recipe = convertToRecipe(meal);
+//     await recipesCollection.insertOne(recipe);
+//   }
 
-  console.log("Finished filling the database");
-}
+//   console.log("Finished filling the database");
+// }
 
 export async function getRecipeById(id: number): Promise<Recipe | null> {
   try {
@@ -49,45 +49,70 @@ export async function getRecipeById(id: number): Promise<Recipe | null> {
   }
 }
 
-export const revalidate = 10;
-export const getRecipes = cache(
-  async (
-    limit: number,
-    query?: string,
-    kitchenType?: string,
-    meatType?: string
-  ) => {
-    try {
-      await client.connect();
+export async function getRecipes(
+  limit: number,
+  query?: string,
+  kitchenType?: string,
+  meatType?: string
+) {
+  try {
+    await client.connect();
 
-      const database = client.db(DATABASE_NAME);
-      const collection = database.collection<Recipe>("recipes");
+    const database = client.db(DATABASE_NAME);
+    const collection = database.collection<Recipe>("recipes");
 
-      const filter: any = {};
-      if (query !== undefined) {
-        filter.$text = { $search: query };
-      }
-      if (kitchenType !== undefined) {
-        filter.kitchenType = kitchenType;
-      }
-      if (meatType !== undefined) {
-        filter.meatType = meatType;
-      }
-
-      console.log(filter);
-
-      const recipes: Recipe[] = await collection
-        .find(filter)
-        .limit(Number(limit))
-        .toArray();
-      return recipes;
-    } catch (error) {
-      console.error("Error fetching recipes: ", error);
-    } finally {
-      await client.close();
+    const filter: any = {};
+    if (query !== undefined) {
+      filter.$text = { $search: query };
     }
+    if (kitchenType !== undefined) {
+      filter.kitchenType = kitchenType;
+    }
+    if (meatType !== undefined) {
+      filter.meatType = meatType;
+    }
+
+    console.log(filter);
+
+    const recipes = await collection
+      .find(filter)
+      .limit(Number(limit))
+      .toArray();
+
+    // const recipes: Recipe[] = recipesWithId.map((recipesWithId: any) => {
+    //   const { _id, ...rest } = recipesWithId;
+    //   return { ...rest, id: _id.toString() };
+    // });
+    return recipes;
+  } catch (error) {
+    console.error("Error fetching recipes: ", error);
+  } finally {
+    await client.close();
   }
-);
+}
+
+export async function getRecipesByCategory(category: CategoryValue) {
+  try {
+    await client.connect();
+
+    const db = client.db(DATABASE_NAME);
+    const collection = db.collection<Recipe>("recipes");
+
+    const filter = {
+      meatType: category,
+    };
+    const recipes: Recipe[] = await collection.find(filter).limit(5).toArray();
+
+    // const recipes: Recipe[] = recipesWithId.map((recipesWithId: any) => {
+    //   const { _id, ...rest } = recipesWithId;
+    //   return { ...rest, id: _id.toString() };
+    // });
+
+    return recipes;
+  } catch (error) {
+    console.error("Error fetching recipes by category: ", error);
+  }
+}
 
 async function run() {
   try {

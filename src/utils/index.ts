@@ -58,57 +58,57 @@ export const updateSearchParams = (type: string, value: string) => {
   return newPathname;
 };
 
-export const convertToRecipe = (meal: Meal) => {
-  const ingredients: string[] = [];
-  const measures: string[] = [];
+// export const convertToRecipe = (meal: Meal) => {
+//   const ingredients: string[] = [];
+//   const measures: string[] = [];
 
-  for (let i = 1; i <= 20; i++) {
-    const ingredient = meal[`strIngredient${i}`];
-    if (ingredient !== null && ingredient !== "" && ingredient !== " ") {
-      ingredients.push(ingredient);
-    }
-  }
+//   for (let i = 1; i <= 20; i++) {
+//     const ingredient = meal[`strIngredient${i}`];
+//     if (ingredient !== null && ingredient !== "" && ingredient !== " ") {
+//       ingredients.push(ingredient);
+//     }
+//   }
 
-  for (let i = 1; i <= 20; i++) {
-    const measure = meal[`strMeasure${i}`];
-    if (measure !== null && measure !== "" && measure !== " ") {
-      measures.push(measure);
-    }
-  }
+//   for (let i = 1; i <= 20; i++) {
+//     const measure = meal[`strMeasure${i}`];
+//     if (measure !== null && measure !== "" && measure !== " ") {
+//       measures.push(measure);
+//     }
+//   }
 
-  const instructionsArray: string[] = meal.strInstructions.split("\r\n");
+//   const instructionsArray: string[] = meal.strInstructions.split("\r\n");
 
-  // Remove empty lines and format each instruction
-  const formattedInstructions: string[] = instructionsArray
-    .filter((line) => line.trim() !== "")
-    .map((line) => {
-      // Remove the step number and tabs
-      const instruction = line.replace(/^\d+\.\t/, "");
-      // Add a period at the end if it's missing
-      return instruction.endsWith(".") ? instruction : instruction + ".";
-    });
+//   // Remove empty lines and format each instruction
+//   const formattedInstructions: string[] = instructionsArray
+//     .filter((line) => line.trim() !== "")
+//     .map((line) => {
+//       // Remove the step number and tabs
+//       const instruction = line.replace(/^\d+\.\t/, "");
+//       // Add a period at the end if it's missing
+//       return instruction.endsWith(".") ? instruction : instruction + ".";
+//     });
 
-  const tags = meal.strTags ? meal.strTags.split(",") : [];
+//   const tags = meal.strTags ? meal.strTags.split(",") : [];
 
-  const recipe: Recipe = {
-    id: +meal.idMeal,
-    name: meal.strMeal,
-    category: "",
-    kitchenType: meal.strArea,
-    meatType: meal.strCategory,
-    instructions: formattedInstructions,
-    mealThumbnail: meal.strMealThumb,
-    tags: tags,
-    ingredients: ingredients,
-    measures: measures,
-    youtubeLink: meal.strYoutube,
-    dateModified: meal.dateModified,
-    timeNeeded: {
-      preparation: 0,
-      cooking: 0,
-    },
-    difficulty: "easy",
-  };
+//   const recipe: Recipe = {
+//     id: +meal.idMeal,
+//     name: meal.strMeal,
+//     category: "",
+//     kitchenType: meal.strArea,
+//     meatType: meal.strCategory,
+//     instructions: formattedInstructions,
+//     mealThumbnail: meal.strMealThumb,
+//     tags: tags,
+//     ingredients: ingredients,
+//     measures: measures,
+//     youtubeLink: meal.strYoutube,
+//     dateModified: meal.dateModified,
+//     timeNeeded: {
+//       preparation: 0,
+//       cooking: 0,
+//     },
+//     difficulty: "easy",
+//   };
 
-  return recipe;
-};
+//   return recipe;
+// };
