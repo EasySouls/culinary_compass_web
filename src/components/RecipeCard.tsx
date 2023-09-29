@@ -6,11 +6,14 @@ import { useState } from "react";
 import { RecipeProps } from "@/types";
 import RecipeDetails from "./RecipeDetails";
 import Link from "next/link";
+import getRemoteBase64 from "@/app/lib/getRemoteBase64";
 
-const RecipeCard = ({ recipe }: RecipeProps) => {
+const RecipeCard = async ({ recipe }: RecipeProps) => {
   const { name, kitchenType, mealThumbnail } = recipe;
 
   const [isOpen, setIsOpen] = useState(false);
+
+  //const blurDataUrl = await getRemoteBase64(recipe.mealThumbnail);
 
   return (
     <div className='m-4 flex flex-col w-[250px] h-[350px] border border-black rounded-xl shadow-sm bg-white'>
@@ -20,8 +23,10 @@ const RecipeCard = ({ recipe }: RecipeProps) => {
             src={mealThumbnail}
             alt={name}
             // placeholder='blur'
+            // blurDataURL={blurDataUrl}
             fill
-            priority
+            loading='lazy'
+            quality={40}
             sizes='(min-width: 200px) 50vw, 100vw'
             className='object-cover rounded-t-xl'
           />
