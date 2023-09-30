@@ -9,7 +9,7 @@ const Hero = () => {
         <h1 className='2xl:text-[72px] text-center sm:text-[64px] text-[50px] font-extrabold'>
           Lose yourself in the world of spectacular dishes!
         </h1>
-        <h3 className='text-[27px] text-black font-light mt-5'>
+        <h3 className='text-[27px] text-center text-black font-light mt-5'>
           Search among the many possibilities, or share your favorites with
           others
         </h3>

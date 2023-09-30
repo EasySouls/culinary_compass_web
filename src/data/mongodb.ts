@@ -1,6 +1,5 @@
 import { DATABASE_NAME, categories } from "@/constants";
 import { CategoryValue, Recipe } from "@/types";
-import { fetchRecipeById } from "@/utils";
 import { MongoClient, ServerApiVersion } from "mongodb";
 import { cache } from "react";
 

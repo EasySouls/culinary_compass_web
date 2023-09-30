@@ -1,6 +1,6 @@
 "use client";
 
-import { Meal, Recipe } from "@/types";
+import { Recipe } from "@/types";
 import Image from "next/image";
 import closeIcon from "public/close.svg";
 import { Fragment } from "react";
@@ -73,22 +73,46 @@ const RecipeDetails = ({ isOpen, closeModal, recipe }: RecipeDetailsProps) => {
                       {recipe.name}
                     </h2>
                     <div className='mt-3 flex flex-wrap gap-4'>
-                      {Object.entries(recipe).map(([key, value]) =>
-                        value !== null && value !== "" && key ? (
+                      {/* The listed attributes of the recipe */}
+                      <div className='flex justify-between gap-5 w-full text-right'>
+                        <h4 className='text-grey capitalize'>Name</h4>
+                        <p className='text-black-100 font-semibold'>
+                          {recipe.name}
+                        </p>
+                      </div>
+                      <div className='flex justify-between gap-5 w-full text-right'>
+                        <h4 className='text-grey capitalize'>Nationality</h4>
+                        <p className='text-black-100 font-semibold capitalize'>
+                          {recipe.kitchenType}
+                        </p>
+                      </div>
+                      <div className='flex justify-between gap-5 w-full text-right'>
+                        <h4 className='text-grey capitalize'>Category</h4>
+                        <p className='text-black-100 font-semibold capitalize'>
+                          {recipe.meatType}
+                        </p>
+                      </div>
+                      <div className='flex justify-between gap-5 w-full text-right'>
+                        <h4 className='text-grey capitalize'>Tags</h4>
+                        {recipe.tags?.map((tag) => (
+                          <p className='text-black-100 font-semibold capitalize'>
+                            {tag}
+                          </p>
+                        ))}
+                      </div>
+                      {/* {Object.entries(recipe).map(([key, value]) => {
+                        return value !== null && value !== "" && key ? (
                           <div
                             className='flex justify-between gap-5 w-full text-right'
                             key={key}
                           >
-                            <h4 className='text-grey capitalize'>
-                              {/* Only while the data is retrieved from TheMealDB*/}
-                              {key.replace("str", "")}
-                            </h4>
+                            <h4 className='text-grey capitalize'>{key}</h4>
                             <p className='text-black-100 font-semibold'>
                               {value}
                             </p>
                           </div>
-                        ) : null
-                      )}
+                        ) : null;
+                      })} */}
                     </div>
                   </div>
                 </Dialog.Panel>

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Listbox, Transition } from "@headlessui/react";
 import { CustomFilterProps } from "@/types";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { updateSearchParams } from "@/utils";
+import { updateSearchParams } from "@/lib/updateSearchParams";
 
 const CustomFilter = ({ title, options }: CustomFilterProps) => {
   const router = useRouter();

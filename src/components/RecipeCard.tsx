@@ -6,9 +6,9 @@ import { useState } from "react";
 import { RecipeProps } from "@/types";
 import RecipeDetails from "./RecipeDetails";
 import Link from "next/link";
-import getRemoteBase64 from "@/app/lib/getRemoteBase64";
+import getRemoteBase64 from "@/lib/getRemoteBase64";
 
-const RecipeCard = async ({ recipe }: RecipeProps) => {
+const RecipeCard = ({ recipe }: RecipeProps) => {
   const { name, kitchenType, mealThumbnail } = recipe;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +37,7 @@ const RecipeCard = async ({ recipe }: RecipeProps) => {
           <h3 className='uppercase text-md text-center'>{name}</h3>
         </Link>
         <hr className='w-3/4 m-2 text-black border-black' />
-        <span>{kitchenType}</span>
+        <span className='capitalize'>{kitchenType}</span>
       </div>
       <div className='w-full mb-2 flex justify-center bg-white'>
         <CustomButton
