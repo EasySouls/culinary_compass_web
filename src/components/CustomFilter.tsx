@@ -17,7 +17,7 @@ const CustomFilter = ({ title, options }: CustomFilterProps) => {
   };
 
   return (
-    <div className='w-fit border rounded-md shadow-sm'>
+    <div className='w-fit border rounded-md shadow-sm bg-white'>
       <Listbox
         value={selectedOption}
         onChange={(e) => {

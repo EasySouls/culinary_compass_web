@@ -27,7 +27,7 @@ const RecipeCard = ({ recipe }: RecipeProps) => {
             fill
             loading='lazy'
             quality={40}
-            sizes='(min-width: 200px) 50vw, 100vw'
+            sizes='(min-width: 248px) 50vw, 100vw'
             className='object-cover rounded-t-xl'
           />
         </Link>

@@ -49,7 +49,7 @@ export interface Recipe {
   ingredients: Array<string>;
   measures: Array<string>;
   youtubeLink?: string;
-  dateModified?: string;
+  dateModified?: Date;
   timeNeeded: {
     preparation: number;
     cooking: number;

@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 import Searchbar from "@/components/Searchbar";
 import { FilterProps } from "@/types";
 import CustomFilter from "@/components/CustomFilter";
-import { categories } from "@/constants";
+import { DATABASE_NAME, categories } from "@/constants";
 import RecipesList from "@/components/RecipesList/RecipesList";
 import { Suspense } from "react";
 
