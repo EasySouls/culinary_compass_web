@@ -100,7 +100,7 @@ export async function getRecipesByCategory(category: CategoryValue) {
     const filter = {
       meatType: category,
     };
-    const recipes: Recipe[] = await collection.find(filter).limit(5).toArray();
+    const recipes: Recipe[] = await collection.find(filter).limit(4).toArray();
 
     // const recipes: Recipe[] = recipesWithId.map((recipesWithId: any) => {
     //   const { _id, ...rest } = recipesWithId;

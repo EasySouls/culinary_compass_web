@@ -17,7 +17,12 @@ const Footer = () => {
         </div>
         <div className='flex flex-row items-center flex-wrap w-1/6'>
           {socials.map((link) => (
-            <Link key={link.title} href={link.url} className='mx-2'>
+            <Link
+              target='_blank'
+              key={link.title}
+              href={link.url}
+              className='mx-2 w-12 h-12'
+            >
               <Image
                 src={link.image}
                 alt={link.title}

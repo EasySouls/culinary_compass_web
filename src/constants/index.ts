@@ -3,8 +3,12 @@ import xLogo from "public/x-logo-90.svg";
 import facebookLogo from "public/facebook-logo-100.svg";
 
 export const socials = [
-  { title: "Github", url: "/", image: githubLogo },
-  { title: "X", url: "/", image: xLogo },
+  {
+    title: "Github",
+    url: "https://github.com/EasySouls/culinary_compass_web",
+    image: githubLogo,
+  },
+  { title: "X", url: "https://twitter.com/CulinaryComp", image: xLogo },
   { title: "Facebook", url: "/", image: facebookLogo },
 ];
 
