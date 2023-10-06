@@ -1,7 +1,6 @@
-import { DATABASE_NAME, categories } from "@/constants";
+import { DATABASE_NAME } from "@/constants";
 import { CategoryValue, Recipe } from "@/types";
 import { MongoClient, ServerApiVersion } from "mongodb";
-import { cache } from "react";
 
 const uri = process.env.MONGODB_CONNECTION_STRING;
 

@@ -1,8 +1,6 @@
 import React from "react";
 
 const Hero = () => {
-  const handleScroll = () => {};
-
   return (
     <div className='flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] mx-auto'>
       <div className='flex-1 pt-12 px-8'>

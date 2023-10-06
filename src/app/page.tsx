@@ -1,4 +1,4 @@
-import Hero from "@/components/Hero";
+import Hero from "@/components/Hero/Hero";
 import Searchbar from "@/components/Searchbar";
 import { FilterProps } from "@/types";
 import CustomFilter from "@/components/CustomFilter";
@@ -6,7 +6,11 @@ import { DATABASE_NAME, categories } from "@/constants";
 import RecipesList from "@/components/RecipesList/RecipesList";
 import { Suspense } from "react";
 
-const Home = async ({ searchParams }: { searchParams: FilterProps }) => {
+const Home = async ({
+  searchParams,
+}: {
+  searchParams: FilterProps | undefined;
+}) => {
   return (
     <>
       <Hero />

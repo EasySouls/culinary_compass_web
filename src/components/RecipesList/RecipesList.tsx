@@ -3,12 +3,16 @@ import { FilterProps } from "@/types";
 import RecipeCard from "../RecipeCard";
 import ShowMore from "../ShowMore";
 
-const RecipesList = async ({ searchParams }: { searchParams: FilterProps }) => {
+const RecipesList = async ({
+  searchParams,
+}: {
+  searchParams: FilterProps | undefined;
+}) => {
   const recipes = await getRecipes(
-    searchParams.limit || 10,
-    searchParams.search,
-    searchParams.kitchenType,
-    searchParams.categories
+    searchParams?.limit || 10,
+    searchParams?.search,
+    searchParams?.kitchenType,
+    searchParams?.categories
   );
 
   const isDataEmpty = recipes === null || !recipes;
@@ -25,8 +29,8 @@ const RecipesList = async ({ searchParams }: { searchParams: FilterProps }) => {
           </div>
 
           <ShowMore
-            pageNumber={(searchParams.limit || 10) / 10}
-            isNext={(searchParams.limit || 10) > recipes.length}
+            pageNumber={(searchParams?.limit || 10) / 10}
+            isNext={(searchParams?.limit || 10) > recipes.length}
           />
         </section>
       ) : (
