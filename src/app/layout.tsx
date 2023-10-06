@@ -3,10 +3,13 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Akshar } from "next/font/google";
 import AuthProvider from "./context/AuthProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const akshar = Akshar({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Culinary Compass",
@@ -17,7 +20,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en'>
-      <body className={`${inter.className} bg-blue-300`}>
+      <body className={`${akshar.className} bg-blue-300`}>
         <Analytics />
         <AuthProvider>
           <Nav />
