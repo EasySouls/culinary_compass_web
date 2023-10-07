@@ -94,8 +94,11 @@ const RecipeDetails = ({ isOpen, closeModal, recipe }: RecipeDetailsProps) => {
                       </div>
                       <div className='flex justify-between gap-5 w-full text-right'>
                         <h4 className='text-grey capitalize'>Tags</h4>
-                        {recipe.tags?.map((tag) => (
-                          <p className='text-black-100 font-semibold capitalize'>
+                        {recipe.tags?.map((tag, index) => (
+                          <p
+                            key={index}
+                            className='text-black-100 font-semibold capitalize'
+                          >
                             {tag}
                           </p>
                         ))}
